@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 Lịch học</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 850px;
+    border-collapse: collapse;
+    background: white;
+}
+
+th, td {
+    border: 1px solid #999;
+    text-align: center;
+}
+
+th {
+    background: #e9ecef;
+    height: 50px;
+    font-size: 16px;
+}
+
+.day {
+    font-weight: bold;
+    width: 80px;
+    background: #f0f0f0;
+}
+
+.lesson {
+    width: 210px;
+    height: 110px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.lesson:hover {
+    background: #f5f5f5;
+}
+
+.lesson input {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.time {
+    display: block;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.subject {
+    display: block;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.empty {
+    font-size: 22px;
+    color: #888;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.progress-btn {
+    background: #222;
+    color: white;
+}
+
+.reset-btn {
+    background: #ddd;
+}
+
+.progress {
+    display: none;
+    background: white;
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.progress h2 {
+    text-align: center;
+}
+
+.progress-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 17px;
+}
+
+.done {
+    font-weight: bold;
+}
+
+#status {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📚 LỊCH HỌC</h1>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+<tr>
+<th>Ngày</th>
+<th>Buổi 1</th>
+<th>Buổi 2</th>
+<th>Buổi 3</th>
+<th>Buổi 4</th>
+</tr>
+</thead>
+
+<tbody>
+
+<!-- T2 -->
+<tr>
+<td class="day">T2</td>
+
+<td class="lesson">
+<input type="checkbox" data-id="T2_0">
+<span class="time">7:30–9:00</span>
+<span class="subject">📐 Toán</span>
+</td>
+
+<td class="lesson">
+<input type="checkbox" data-id="T2_1">
+<span class="time">10:30–12:00</span>
+<span class="subject">💻 Tin</span>
+</td>
+
+<td class="lesson">
+<input type="checkbox" data-id="T2_2">
+<span class="time">13:30–15:00</span>
+<span class="subject">🧪 KHTN</span>
+</td>
+
+<td class="lesson">
+<input type="checkbox" data-id="T2_3">
+<span class="time">16:30–18:00</span>
+<span class="subject">📖 Văn</span>
+</td>
+</tr>
+
+
+<!-- T3 -->
+<tr>
+<td class="day">T3</td>
+
+<td class="lesson">
+<input type="checkbox" data-id="T3_0">
+<span class="time">7:30–9:00</span>
+<span class="subject">📐 Toán</span>
+</td>
+
+<td class="lesson">
+<input type="checkbox" data-id="T3_1">
+<span class="time">10:30–12:00</span>
+<span class="subject">💻 Tin</span>
+</td>
+
+<td class="lesson">
+<input type="checkbox" data-id="T3_2">
+<span class="time">19:30–20:30</span>
+<span class="subject">📖 Văn</span>
+</td>
+
+<td class="empty">—</td>
+</tr>
+
+
+<!-- T4 -->
+<tr>
+<td class="day">T4</td>
+
+<td class="lesson">
+<input type="checkbox" data-id="T4_0">
+<span class="time">7:30–9:00</span>
+<span class="subject">📖 Văn</span>
+</td>
+
+<td class="lesson">
+<input type="checkbox" data-id="T4_1">
+<span class="time">10:30–12:00</span>
+<span class="subject">📐 Toán</span>
+</td>
+
+<td class="lesson">
+<input type="checkbox" data-id="T4_2">
+<span class="time">13:30–15:00</span>
+<span class="subject">💻 Tin</span>
+</td>
+
+<td class="lesson">
+<input type="checkbox" data-id="T4_3">
+<span class="time">16:30–18:00</span>
+<span class="subject">🧪 KHTN</span>
+</td>
+</tr>
+
+
+<!-- T5 -->
+<tr>
+<td class="day">T5</td>
+
+<td class="lesson">
+<input type="checkbox" data-id="T5_0">
+<span class="time">7:30–9:00</span>
+<span class="subject">📐 Toán</span>
+</td>
+
+<td class="lesson">
+<input type="checkbox" data-id="T5_1">
+<span class="time">10:30–12:00</span>
+<span class="subject">🧪 KHTN</span>
+</td>
+
+<td class="lesson">
+<input type="checkbox" data-id="T5_2">
+<span class="time">19:30–20:30</span>
+<span class="subject">💻 Tin</span>
+</td>
+
+<td class="empty">—</td>
+</tr>
+
+
+<!-- T6 -->
+<tr>
+<td class="day">T6</td>
+
+<td class="lesson">
+<input type="checkbox" data-id="T6_0">
+<span class="time">7:30–9:00</span>
+<span class="subject">💻 Tin</span>
+</td>
+
+<td class="lesson">
+<input type="checkbox" data-id="T6_1">
+<span class="time">10:30–12:00</span>
+<span class="subject">📐 Toán</span>
+</td>
+
+<td class="lesson">
+<input type="checkbox" data-id="T6_2">
+<span class="time">13:30–15:00</span>
+<span class="subject">📖 Văn</span>
+</td>
+
+<td class="lesson">
+<input type="checkbox" data-id="T6_3">
+<span class="time">16:30–18:00</span>
+<span class="subject">🧪 KHTN</span>
+</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+
+<div class="buttons">
+
+<button class="progress-btn" onclick="showProgress()">
+📊 Xem dữ liệu đã lưu
+</button>
+
+<button class="reset-btn" onclick="resetAll()">
+🔄 Bỏ tick tất cả
+</button>
+
+</div>
+
+
+<div id="status">
+🔄 Đang kết nối Firebase...
+</div>
+
+
+<div id="progress" class="progress">
+
+<h2>📊 TIẾN ĐỘ HỌC TẬP</h2>
+
+<div id="progressList"></div>
+
+</div>
+
+</div>
+
+
+<!-- ============================= -->
+<!-- FIREBASE -->
+<!-- ============================= -->
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+getDatabase,
+ref,
+onValue,
+set
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyBuVxe6-UpiDrLgvAVU_bGn4Jk1ljfnJVQ",
+
+authDomain: "lich-hoc-65e5b.firebaseapp.com",
+
+databaseURL: "https://lich-hoc-65e5b-default-rtdb.firebaseio.com",
+
+projectId: "lich-hoc-65e5b",
+
+storageBucket: "lich-hoc-65e5b.firebasestorage.app",
+
+messagingSenderId: "930830461526",
+
+appId: "1:930830461526:web:1104d2efc13ab7674669f7",
+
+measurementId: "G-PEJ40T9T2J"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const database = getDatabase(app);
+
+const scheduleRef = ref(database, "lich_hoc");
+
+const checkboxes =
+document.querySelectorAll(
+'input[type="checkbox"]'
+);
+
+
+/* NHẬN DỮ LIỆU */
+
+onValue(scheduleRef, (snapshot) => {
+
+const data = snapshot.val() || {};
+
+checkboxes.forEach((box) => {
+
+const id = box.dataset.id;
+
+box.checked = data[id] === true;
+
+});
+
+document.getElementById("status").textContent =
+"🟢 Đã đồng bộ Firebase";
+
+});
+
+
+/* KHI TICK */
+
+checkboxes.forEach((box) => {
+
+box.addEventListener("change", () => {
+
+const id = box.dataset.id;
+
+set(
+ref(database, "lich_hoc/" + id),
+box.checked
+);
+
+});
+
+});
+
+
+/* XEM TIẾN ĐỘ */
+
+window.showProgress = function() {
+
+const days = {
+"T2": 4,
+"T3": 3,
+"T4": 4,
+"T5": 3,
+"T6": 4
+};
+
+const progress =
+document.getElementById("progress");
+
+const list =
+document.getElementById("progressList");
+
+list.innerHTML = "";
+
+
+for (const day in days) {
+
+const total = days[day];
+
+let done = 0;
+
+for (let i = 0; i < total; i++) {
+
+const checkbox =
+document.querySelector(
+`[data-id="${day}_${i}"]`
+);
+
+if (checkbox.checked) {
+done++;
+}
+
+}
+
+const item =
+document.createElement("div");
+
+item.className =
+"progress-item";
+
+
+if (done === total) {
+
+item.innerHTML =
+`${day}: ✅ <span class="done">ĐÃ XONG</span> (${done}/${total})`;
+
+} else {
+
+item.innerHTML =
+`${day}: ⏳ CHƯA XONG (${done}/${total})`;
+
+}
+
+list.appendChild(item);
+
+}
+
+
+progress.style.display = "block";
+
+progress.scrollIntoView({
+behavior: "smooth"
+});
+
+};
+
+
+/* BỎ TICK TẤT CẢ */
+
+window.resetAll = function() {
+
+if (!confirm(
+"Bạn có chắc muốn bỏ tick tất cả không?"
+)) {
+return;
+}
+
+const updates = {};
+
+checkboxes.forEach((box) => {
+
+updates[box.dataset.id] = false;
+
+});
+
+set(scheduleRef, updates);
+
+};
+
+</script>
+
+</body>
+</html>
